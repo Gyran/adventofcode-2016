@@ -55,18 +55,18 @@ const solve = (pad, startPos, rows) => {
   };
 
 
-  let currenPos = startPos;
+  let currentPos = startPos;
   const code = [];
 
   rows.forEach((row) => {
-    // console.log(currenPos, 'doing row!', row);
+    // console.log(currentPos, 'doing row!', row);
 
     for (let i = 0; i < row.length; i += 1) {
       const direction = row[i];
-      currenPos = tryToMove(currenPos, row[i]);
+      currentPos = tryToMove(currentPos, row[i]);
     }
 
-    const char = getPadChar(currenPos);
+    const char = getPadChar(currentPos);
     code.push(char);
   });
 
