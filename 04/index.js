@@ -84,4 +84,27 @@ const sectorIdSum = validRooms.reduce((sum, room) => {
   return sum + room.sectorId;
 }, 0);
 
-console.log('valid rooms', validRooms.length, 'sector sum', sectorIdSum);
+const LOWERCASE_A_CHAR_CODE = 97;
+const ALPHABETH = 'abcdefghijklmnopqrstuvwxyz';
+const dechiperRoom = (room) => {
+  const shift = (room.sectorId % (ALPHABETH.length));
+
+  const dNames = room.names.map((name) => {
+    return name.split('').map((c) => {
+      const encryptedNum = c.charCodeAt(0) - LOWERCASE_A_CHAR_CODE;
+      const decruptedNum = (encryptedNum + shift) % (ALPHABETH.length);
+      return String.fromCharCode(decruptedNum + LOWERCASE_A_CHAR_CODE);
+      // console.log('e', encryptedNum, decruptedNum, String.fromCharCode(decruptedNum + LOWERCASE_A_CHAR_CODE));
+    }).join('');
+  });
+
+  console.log('de name', room.sectorId, dNames);
+};
+
+validRooms.forEach((room) => {
+  dechiperRoom(room);
+});
+
+
+
+// console.log('valid rooms', validRooms.length, 'sector sum', sectorIdSum);
